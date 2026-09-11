@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sungai Rezeki Sdn Bhd">
+  <rect width="64" height="64" rx="14" fill="#0F172A"/>
+  <rect x="8" y="8" width="48" height="48" rx="10" fill="#F59E0B"/>
+  <text x="32" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#0F172A">SR</text>
+</svg>

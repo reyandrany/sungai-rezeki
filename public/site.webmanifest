@@ -1,0 +1,18 @@
+{
+  "name": "Sungai Rezeki Sdn Bhd",
+  "short_name": "Sungai Rezeki",
+  "description": "Civil engineering, excavation, palm oil logistics and ferry services in Johor, Malaysia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0F172A",
+  "lang": "en-MY",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
