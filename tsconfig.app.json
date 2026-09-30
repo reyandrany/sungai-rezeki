@@ -20,5 +20,6 @@
     "erasableSyntaxOnly": true,
     "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/components/LandingPage-backup.tsx"]
 }

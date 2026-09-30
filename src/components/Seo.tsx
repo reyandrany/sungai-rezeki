@@ -1,9 +1,9 @@
 import { SITE, buildJsonLd } from '../content/site.ts'
 
-export default function Seo() {
+export default function Seo({ title = SITE.title }: { title?: string }) {
   return (
     <>
-      <title>{SITE.title}</title>
+      <title>{title}</title>
       <meta name="description" content={SITE.description} />
       <script type="application/ld+json">{JSON.stringify(buildJsonLd())}</script>
     </>

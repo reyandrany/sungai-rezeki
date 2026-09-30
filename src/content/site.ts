@@ -2,43 +2,44 @@ export const SITE_URL = (
   import.meta.env.VITE_SITE_URL ?? 'https://www.sungairezeki.com.my'
 ).replace(/\/$/, '')
 
+export const MEDIA = 'https://www.sungairezeki.com.my'
+
 export const SITE = {
   url: SITE_URL,
-  locale: 'en_MY',
-  language: 'en',
-  title: 'Sungai Rezeki Sdn Bhd | Civil Engineering, Excavation & Palm Oil Logistics in Johor',
+  locale: 'ms_MY',
+  language: 'ms',
+  title: 'Sungai Rezeki Sdn Bhd | Mekanisasi Solusi Kehadapan',
   titleShort: 'Sungai Rezeki Sdn Bhd',
   description:
-    'Bumiputera contractor in Bandar Penawar, Johor. Sungai Rezeki Sdn Bhd delivers civil engineering, construction, excavation, oil palm plantation logistics and Mutiaramas ferry services. Founded by Jamaludin bin Kamal Ho; incorporated 5 February 2010.',
+    'Syarikat pemilikan 100% Bumiputera Negeri Johor, berdaftar dengan Kementerian Kewangan Malaysia. Lebih 20 tahun mengurus ladang sawit, logistik, feri, agrikultur dan makanan, dari pejabat di Bandar Penawar.',
   keywords:
-    'Sungai Rezeki Sdn Bhd, civil engineering Johor, excavation Johor, oil palm logistics, palm oil transport Kota Tinggi, Mutiaramas ferry, Bandar Penawar contractor, Bahau infrastructure, Bangi civil works',
-  motto: 'Rezeki ditangan Allah, Usaha ditangan kita',
+    'Sungai Rezeki Sdn Bhd, 889171-P, ladang sawit Johor, Johor Plantation Group, logistik perladangan, feri Johor, Bandar Penawar, Kota Tinggi, Mekanisasi Solusi Kehadapan',
+  motto: 'Mekanisasi Solusi Kehadapan',
+  registration: '889171-P',
   image: {
-    url: `${SITE_URL}/og-image.svg`,
-    alt: 'Sungai Rezeki Sdn Bhd — civil engineering, excavation and logistics',
+    url: `${MEDIA}/hero.jpg`,
+    alt: 'Gambar utama Sungai Rezeki Sdn Bhd',
     width: 1200,
     height: 630,
   },
-  facebook: 'https://www.facebook.com/Sungai-Rezeki-Mutiara-Mas-462390627257036/',
 } as const
 
 export const COMPANY = {
   legalName: 'Sungai Rezeki Sdn Bhd',
-  founder: 'Jamaludin bin Kamal Ho',
-  founded: '2010-02-05',
-  heritageStart: '1993-09-16',
-  ownership: 'Bumiputera-owned contractor',
-  streetAddress: 'No 20/02, Jalan Cengal 1, Taman Desaru Utama',
-  postalCode: '81900',
+  shortName: 'SRSB',
+  registration: '889171-P',
+  ownership: 'Pemilikan 100% Bumiputera Negeri Johor',
+  registrar: 'Kementerian Kewangan Malaysia',
+  experience: 'Lebih 20 tahun mengurus ladang sawit',
+  ceo: 'Jamaludin Bin Kamal Ho',
+  cfo: 'Norhidayah Abbdul Rahim',
+  streetAddress: 'No. 20/02 Jalan Cengal 1, Taman Desaru Utama',
+  postalCode: '81930',
   addressLocality: 'Bandar Penawar',
   addressRegion: 'Johor',
   addressCountry: 'MY',
   address:
-    'No 20/02, Jalan Cengal 1, Taman Desaru Utama, 81900 Bandar Penawar, Kota Tinggi, Johor',
-  hours:
-    'Monday – Friday: 8:00 AM – 5:00 PM (lunch 1:00 PM – 2:00 PM) · Saturday: 8:00 AM – 2:00 PM',
-  phones: ['+60 18-589 0208'] as const,
-  phoneHref: 'tel:+60185890208',
+    'No. 20/02 Jalan Cengal 1, Taman Desaru Utama, Bandar Penawar, 81930 Kota Tinggi, Johor',
 } as const
 
 export function buildJsonLd(): Record<string, unknown> {
@@ -46,27 +47,16 @@ export function buildJsonLd(): Record<string, unknown> {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': ['Organization', 'LocalBusiness', 'GeneralContractor'],
+        '@type': ['Organization', 'LocalBusiness'],
         '@id': `${SITE.url}/#organization`,
         name: COMPANY.legalName,
         legalName: COMPANY.legalName,
         url: SITE.url,
         image: SITE.image.url,
-        logo: `${SITE.url}/favicon.svg`,
+        logo: `${MEDIA}/logo.png`,
         description: SITE.description,
         slogan: SITE.motto,
-        foundingDate: COMPANY.founded,
-        founder: {
-          '@type': 'Person',
-          name: COMPANY.founder,
-        },
-        telephone: '+60185890208',
-        sameAs: [SITE.facebook],
-        areaServed: [
-          { '@type': 'AdministrativeArea', name: 'Johor' },
-          { '@type': 'AdministrativeArea', name: 'Negeri Sembilan' },
-          { '@type': 'AdministrativeArea', name: 'Selangor' },
-        ],
+        identifier: COMPANY.registration,
         address: {
           '@type': 'PostalAddress',
           streetAddress: COMPANY.streetAddress,
@@ -75,44 +65,22 @@ export function buildJsonLd(): Record<string, unknown> {
           postalCode: COMPANY.postalCode,
           addressCountry: COMPANY.addressCountry,
         },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: 1.5326,
-          longitude: 104.2315,
-        },
-        openingHoursSpecification: [
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '08:00',
-            closes: '17:00',
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: 'Saturday',
-            opens: '08:00',
-            closes: '14:00',
-          },
+        areaServed: [
+          { '@type': 'AdministrativeArea', name: 'Johor' },
+          { '@type': 'AdministrativeArea', name: 'Pahang' },
+        ],
+        employee: [
+          { '@type': 'Person', name: COMPANY.ceo, jobTitle: 'Chief Executive Officer' },
+          { '@type': 'Person', name: COMPANY.cfo, jobTitle: 'Chief Financial Officer' },
         ],
         knowsAbout: [
-          'Civil engineering',
-          'Construction',
-          'Excavation',
-          'Oil palm plantation management',
-          'Palm oil transport',
-          'Quarry logistics',
-          'Ferry services',
+          'Pengurusan ladang sawit',
+          'Logistik perladangan',
+          'Perkhidmatan feri',
+          'Agrikultur dan ternakan',
+          'Makanan dan minuman',
+          'Kerja sivil',
         ],
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: 'Industrial services',
-          itemListElement: [
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Civil Engineering & Construction' } },
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Excavation & Mining' } },
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Agriculture Logistics' } },
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Maritime & Ferry Services' } },
-          ],
-        },
       },
       {
         '@type': 'WebSite',
@@ -120,19 +88,8 @@ export function buildJsonLd(): Record<string, unknown> {
         url: SITE.url,
         name: COMPANY.legalName,
         description: SITE.description,
-        inLanguage: 'en-MY',
+        inLanguage: 'ms-MY',
         publisher: { '@id': `${SITE.url}/#organization` },
-      },
-      {
-        '@type': 'WebPage',
-        '@id': `${SITE.url}/#webpage`,
-        url: SITE.url,
-        name: SITE.title,
-        description: SITE.description,
-        isPartOf: { '@id': `${SITE.url}/#website` },
-        about: { '@id': `${SITE.url}/#organization` },
-        inLanguage: 'en-MY',
-        primaryImageOfPage: SITE.image.url,
       },
     ],
   }
