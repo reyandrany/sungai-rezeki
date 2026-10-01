@@ -45,7 +45,7 @@ export default function LandingPage() {
           </div>
           <div className="relative mx-auto w-full max-w-[610px] lg:mx-0">
             <div aria-hidden="true" className="absolute -inset-3 rounded-[2rem] border border-amber-300/70" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-slate-200 shadow-[0_28px_60px_-28px_rgb(15_23_42/0.6)] sm:aspect-[4/4.2]">
+            <div className="hero-reveal relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-slate-200 shadow-[0_28px_60px_-28px_rgb(15_23_42/0.6)] sm:aspect-[4/4.2]">
               <img
                 src={media('/hero.jpg')}
                 alt="Ladang sawit di bawah naungan Sungai Rezeki"

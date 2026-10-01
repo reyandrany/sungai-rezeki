@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowUpRight, CheckCircle2, MapPin } from 'lucide-react'
 import { ESTATE_PROJECTS } from '../content/projects.ts'
 import { COMPANY } from '../content/site.ts'
@@ -190,6 +190,16 @@ export function ProjectsPage() {
       return `${project.estate} ${project.block} ${project.work}`.toLowerCase().includes(needle)
     })
   }, [estate, query, work])
+  const filterSignature = `${estate}|${work}|${query}`
+  const filterReady = useRef(false)
+  const [resultKey, setResultKey] = useState(0)
+  useEffect(() => {
+    if (!filterReady.current) {
+      filterReady.current = true
+      return
+    }
+    setResultKey((key) => key + 1)
+  }, [filterSignature])
 
   return (
     <PageFrame>
@@ -254,11 +264,11 @@ export function ProjectsPage() {
       </p>
 
       {projects.length === 0 ? (
-        <p className={`mt-6 px-5 py-8 text-slate-600 ${CARD_SURFACE}`}>
+        <p key={resultKey} className={`mt-6 px-5 py-8 text-slate-600 ${resultKey > 0 ? 'result-fade' : ''} ${CARD_SURFACE}`}>
           Tiada projek yang sepadan. Kosongkan carian atau pilih “Semua ladang”.
         </p>
       ) : (
-        <div className={`mt-4 overflow-x-auto ${CARD_SURFACE}`}>
+        <div key={resultKey} className={`mt-4 overflow-x-auto ${resultKey > 0 ? 'result-fade' : ''} ${CARD_SURFACE}`}>
           <table className="w-full min-w-[720px] border-collapse text-left">
             <caption className="sr-only">
               Daftar projek Sungai Rezeki mengikut ladang, blok, jenis kerja dan keluasan

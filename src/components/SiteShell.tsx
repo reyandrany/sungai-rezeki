@@ -78,11 +78,9 @@ export default function SiteShell() {
             {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>
         </nav>
-        <div
-          id="menu-mudah-alih"
-          hidden={!menuOpen}
-          className="border-t border-slate-200 bg-white px-4 pt-3 pb-5 shadow-lg xl:hidden"
-        >
+        <div id="menu-mudah-alih" data-open={menuOpen} inert={!menuOpen} className="menu-panel xl:hidden">
+          <div className="min-h-0 overflow-hidden">
+          <div className="border-t border-slate-200 bg-white px-4 pt-3 pb-5 shadow-lg">
           <ul className="grid gap-1">
             {NAV.map((item) => (
               <li key={item.to}>
@@ -105,10 +103,12 @@ export default function SiteShell() {
             Hubungi pejabat
             <ArrowRight size={17} aria-hidden="true" />
           </Link>
+          </div>
+          </div>
         </div>
       </header>
 
-      <main id="kandungan">
+      <main id="kandungan" key={pathname} className="page-enter">
         <Outlet />
       </main>
 
