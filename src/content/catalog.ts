@@ -1,10 +1,8 @@
-import { MEDIA } from './site.ts'
-
 export const FOCUS =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-field'
 
 export function media(path: string) {
-  return `${MEDIA}${path}`
+  return path
 }
 
 export function mapHref(query: string) {

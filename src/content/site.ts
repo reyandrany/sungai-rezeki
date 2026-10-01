@@ -1,8 +1,11 @@
+import { getPage, PAGES, type SitePage } from './seoPages.ts'
+
+export type { SitePage }
+export { getPage, PAGES }
+
 export const SITE_URL = (
   import.meta.env.VITE_SITE_URL ?? 'https://www.sungairezeki.com.my'
 ).replace(/\/$/, '')
-
-export const MEDIA = 'https://www.sungairezeki.com.my'
 
 export const SITE = {
   url: SITE_URL,
@@ -17,7 +20,7 @@ export const SITE = {
   motto: 'Mekanisasi Solusi Kehadapan',
   registration: '889171-P',
   image: {
-    url: `${MEDIA}/hero.jpg`,
+    url: `${SITE_URL}/hero.jpg`,
     alt: 'Gambar utama Sungai Rezeki Sdn Bhd',
     width: 1200,
     height: 630,
@@ -42,7 +45,12 @@ export const COMPANY = {
     'No. 20/02 Jalan Cengal 1, Taman Desaru Utama, Bandar Penawar, 81930 Kota Tinggi, Johor',
 } as const
 
-export function buildJsonLd(): Record<string, unknown> {
+export function pageUrl(path: string) {
+  return path === '/' ? `${SITE.url}/` : `${SITE.url}${path}`
+}
+
+export function buildJsonLd(page: SitePage = PAGES[0]): Record<string, unknown> {
+  const url = pageUrl(page.path)
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -53,7 +61,7 @@ export function buildJsonLd(): Record<string, unknown> {
         legalName: COMPANY.legalName,
         url: SITE.url,
         image: SITE.image.url,
-        logo: `${MEDIA}/logo.png`,
+        logo: `${SITE_URL}/sungai-rezeki.webp`,
         description: SITE.description,
         slogan: SITE.motto,
         identifier: COMPANY.registration,
@@ -85,11 +93,21 @@ export function buildJsonLd(): Record<string, unknown> {
       {
         '@type': 'WebSite',
         '@id': `${SITE.url}/#website`,
-        url: SITE.url,
+        url: `${SITE.url}/`,
         name: COMPANY.legalName,
         description: SITE.description,
         inLanguage: 'ms-MY',
         publisher: { '@id': `${SITE.url}/#organization` },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: page.title,
+        description: page.description,
+        inLanguage: 'ms-MY',
+        isPartOf: { '@id': `${SITE.url}/#website` },
+        about: { '@id': `${SITE.url}/#organization` },
       },
     ],
   }

@@ -6,16 +6,6 @@ import { COMPANY, SITE } from '../content/site.ts'
 import Seo from './Seo.tsx'
 import { BUTTON_PRIMARY, FOCUS_RING, FOCUS_RING_INVERSE, Logo } from './ui.tsx'
 
-const PAGE_TITLES: Record<string, string> = {
-  '/': SITE.title,
-  '/tentang-kami': `Tentang kami | ${SITE.titleShort}`,
-  '/servis': `Servis | ${SITE.titleShort}`,
-  '/projek': `Projek | ${SITE.titleShort}`,
-  '/aset-kenderaan': `Aset kenderaan | ${SITE.titleShort}`,
-  '/anak-syarikat': `Anak syarikat | ${SITE.titleShort}`,
-  '/hubungi': `Hubungi kami | ${SITE.titleShort}`,
-}
-
 const linkClass = (isActive: boolean) =>
   `block cursor-pointer rounded-lg px-4 py-3 text-sm font-semibold transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900 motion-reduce:transition-none ${FOCUS_RING} ${
     isActive ? 'text-amber-600' : 'text-slate-600'
@@ -48,7 +38,7 @@ export default function SiteShell() {
 
   return (
     <div className="min-h-svh overflow-x-clip bg-slate-50 text-slate-800 antialiased">
-      <Seo title={PAGE_TITLES[pathname] ?? SITE.title} />
+      <Seo />
       <a
         href="#kandungan"
         className={`fixed top-3 left-4 z-60 -translate-y-24 rounded-lg bg-slate-900 px-4 py-3 text-sm font-bold text-white transition-transform focus:translate-y-0 motion-reduce:transition-none ${FOCUS_RING}`}
